@@ -37,16 +37,34 @@
           <Icon name="ph:user-thin" size="17" />
           Account
           <Icon name="mdi:chevron-down" size="15" class="ml-5" />
-          <div id="AccountMenu" v-if="isAccountMenu" class="absolute bg-white w-[214px] text-[#333333] z-40 top-[38px] -left-[100px] border-x border-b">
+          <div
+            id="AccountMenu"
+            v-if="isAccountMenu"
+            class="absolute bg-white w-[214px] text-[#333333] z-40 top-[38px] -left-[100px] border-x border-b"
+          >
             <div v-if="true">
-                <div class="text-semibold text-[15px] my-4 px-3">Welcome !</div>
-                <div class="flex items-center gap-1 px-3 mb-3 ">
-                    <NuxtLink to="/auth" class="bg-green-400 text-center w-full text-[16px] rounded-sm text-white font-semi-bold p-2">
-                      Login / Register
-                    </NuxtLink>
-                </div>
-
+              <div class="text-semibold text-[15px] my-4 px-3">Welcome !</div>
+              <div class="flex items-center gap-1 px-3 mb-3">
+                <NuxtLink
+                  to="/auth"
+                  class="bg-green-400 text-center w-full text-[16px] rounded-sm text-white font-semi-bold p-2"
+                >
+                  Login / Register
+                </NuxtLink>
+              </div>
             </div>
+            <div class="border-b" />
+            <ul class="bg-white">
+              <li class="text-[13px] py-2 px-4 w-full hover:bg-gray-200">
+                My Orders
+              </li>
+              <li
+                v-if="true"
+                class="text-[13px] py-2 px-4 w-full hover:bg-gray-200"
+              >
+                Sign out
+              </li>
+            </ul>
           </div>
         </li>
       </ul>
@@ -55,10 +73,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
- let isAccountMenu = ref(false)
+let isAccountMenu = ref(false)
 </script>
 
 <style></style>
- 
