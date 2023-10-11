@@ -47,7 +47,7 @@
               <div class="flex items-center gap-1 px-3 mb-3">
                 <NuxtLink
                   to="/auth"
-                  class="bg-green-400 text-center w-full text-[16px] rounded-sm text-white font-semi-bold p-2"
+                  class="bg-green-400 text-center w-full text-[16px] rounded-sm text-white font-semibold p-2"
                 >
                   Login / Register
                 </NuxtLink>
@@ -55,7 +55,10 @@
             </div>
             <div class="border-b" />
             <ul class="bg-white">
-              <li class="text-[13px] py-2 px-4 w-full hover:bg-gray-200">
+              <li
+                class="text-[13px] py-2 px-4 w-full hover:bg-gray-200"
+                @click="navigateTo('/orders')"
+              >
                 My Orders
               </li>
               <li
@@ -68,6 +71,29 @@
           </div>
         </li>
       </ul>
+    </div>
+    <div id="MainHeader" class="flex items-center w-full bg-white">
+      <div
+        class="flex lg:justify-start justify-between gap-10 max-w-[1150px] w-full px-3 py-5 mx-auto"
+      >
+        <NuxtLink to="/" class="min-w-[170px]">
+          <img width="170" src="/AliExpress-logo.png" />
+        </NuxtLink>
+
+        <div class="max-w-[700px] w-full md:block hidden">
+          <div class="relative">
+            <div
+              class="flex items-center border-2 border-green-400 rounded-md w-full"
+            >
+              <input
+                class="w-full placeholder-gray-400 text-sm pl-3 focus:outline-none"
+                placeholder="kitchen accessories"
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
