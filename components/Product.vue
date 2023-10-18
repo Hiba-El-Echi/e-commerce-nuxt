@@ -9,17 +9,17 @@ import { Product } from '#build/components';
           <div id="ProductDetails">
             
                 <span class="flex items-center justify-start gap-3 px-1 pt-1">
-                    <span class="text-[#FF6674] font-semibold">${{ priceComputed }}</span>
+                    <span class="text-red-300 font-semibold">${{ priceComputed }}</span>
                     <span class="text-gray-500 text-sm text-light line-through">${{ oldPriceComputed }}</span>
                 </span>
 
-                <span class="px-1 relative -top-1.5 text-[#FF6674] text-xs font-semibold">
+                <span class="px-1 relative -top-1.5 text-red-300 text-xs font-semibold">
                     Extra 5% off
                 </span>
 
                 <div class="flex items-center gap-1 px-1 relative -top-1">
-                    <span class="bg-[#FD374F] text-white text-[9px] font-semibold px-1.5 rounded-sm">Welcome Deal</span>
-                    <span class="bg-[#F5F5F5] border text-[#C08562] text-[9px] font-semibold px-1.5 rounded-sm">Top Selling</span>
+                    <span class="bg-red-300 text-white text-[9px] font-semibold px-1.5 rounded-sm">Welcome Deal</span>
+                    <span class="bg-[#F5F5F5] border text-lime-400 text-[9px] font-semibold px-1.5 rounded-sm">Top Selling</span>
                 </div>
 
                 <p class="flex items-center px-1 pt-0.5 text-xs text-[#252525]">
