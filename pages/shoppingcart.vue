@@ -45,12 +45,12 @@
             <div class="flex items-center justify-between my-4">
               <div class="font-semibold">Total</div>
               <div class="text-2xl font-semibold">
-                $ <span class="font-extrabold">{{ totalPriceComputed }}</span>
+                $ <span class="font-extrabold">87</span>
               </div>
             </div>
             <button
               @click="goToCheckout"
-              class="flex items-center justify-center bg-[#FD374F] w-full text-white text-[21px] font-semibold p-1.5 rounded-full mt-4"
+              class="flex items-center justify-center bg-green-400 w-full text-white text-[21px] font-semibold p-1.5 rounded-full mt-4"
             >
               Checkout
             </button>
@@ -78,6 +78,13 @@
 </template>
 <script setup>
 import MainLayout from "~/layouts/MainLayout.vue";
+
+const cards = ref([
+    'visa.png',
+    'mastercard.png',
+    'paypal.png',
+    'applepay.png',
+])
 
 const products = [
   {
@@ -108,47 +115,7 @@ const products = [
     url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     price: 99,
   },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
+
+ 
 ];
 </script>
