@@ -49,8 +49,11 @@
               Add New Address
             </NuxtLink>
           </div>
-
-          
+          <div id="Items" class="bg-white rounded-lg p-4 mt-4">
+            <div v-for="product in products">
+              <CheckoutItem :product="product" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
