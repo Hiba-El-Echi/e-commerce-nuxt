@@ -25,9 +25,11 @@
           </div>
         </div>
         <div class="md:w-[60%] bg-white p-3 rounded-lg">
-          <div v-if="true">
-            <p class="mb-2">Title</p>
-            <p class="font-light text-[12px] mb-2">Description</p>
+          <div v-if="product && product.data">
+            <p class="mb-2">{{ product.data.title }}</p>
+            <p class="font-light text-[12px] mb-2">
+              {{ product.data.description }}
+            </p>
           </div>
           <div class="flex items-center pt-1.5">
             <span class="h-4 min-w-4 rounded-full p-0.5 bg-[#FFD000] mr-2">
@@ -82,7 +84,6 @@
 </template>
 
 <script setup>
-import { Product } from "#build/components";
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
@@ -97,15 +98,13 @@ onBeforeMount(async () => {
   );
 });
 
-
-  watchEffect(() => {
-    if(product.value && product.value.data){
-      currentImage.value = product.value.data.url
-      images.value[0] = product.value.data.url
-      userStore.isLoading = false
-    }
-  });
-
+watchEffect(() => {
+  if (product.value && product.value.data) {
+    currentImage.value = product.value.data.url;
+    images.value[0] = product.value.data.url;
+    userStore.isLoading = false;
+  }
+});
 
 const isInCart = computed(() => {
   let res = false;
@@ -118,7 +117,10 @@ const isInCart = computed(() => {
 });
 
 const priceComputed = computed(() => {
-  return "26.40";
+  if (product.value && product.value.data) {
+    return product.value.data.price / 100;
+  }
+  return "0.00";
 });
 
 const images = ref([
@@ -131,6 +133,6 @@ const images = ref([
 ]);
 
 const addToCart = () => {
-  alert("ADDED");
+  userStore.cart.push(product.value.data);
 };
 </script>
