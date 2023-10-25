@@ -18,12 +18,16 @@ import { useUserStore } from "~/stores/user";
 import { useProductsStore } from "~/stores/products";
 
 const userStore = useUserStore();
-const { products, useProductsList } = useProductsStore();
+const productsStore = useProductsStore();
 
-onBeforeMount(async () => {
-  useProductsList();
+const products = computed(()=>{
+  return productsStore.products
+})
+
+onMounted(async () => {
+  productsStore.useProductsList();
   console.log(products, "produstts");
-  // setTimeout(() => (userStore.isLoading = false), 1000);
+  setTimeout(() => (userStore.isLoading = false), 1000);
 });
 </script>
 
