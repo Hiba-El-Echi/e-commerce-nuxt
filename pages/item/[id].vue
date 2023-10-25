@@ -64,9 +64,7 @@
             Free 11-day delivery over ￡8.28
           </p>
 
-          <p class="text-[#009A66] text-xs font-semibold pt-1">
-            Free Shipping
-          </p>
+          <p class="text-[#009A66] text-xs font-semibold pt-1">Free Shipping</p>
 
           <div class="py-2" />
           <button
@@ -84,44 +82,52 @@
 </template>
 
 <script setup>
-import MainLayout from '~/layouts/MainLayout.vue'
-import { useUserStore } from '~/stores/user'
-const userStore = useUserStore()
+import { Product } from "#build/components";
+import MainLayout from "~/layouts/MainLayout.vue";
+import { useUserStore } from "~/stores/user";
+const userStore = useUserStore();
 
-const currentImage = ref(null)
-const route = useRoute()
+const currentImage = ref(null);
+const product = ref(null);
+const route = useRoute();
+
+onBeforeMount(async () => {
+  product.value = await useFetch(
+    `/api/prisma/get-product-by-id/${route.params.id}`
+  );
+});
 
 onMounted(() => {
   watchEffect(() => {
-    currentImage.value = 'https://picsum.photos/id/77/800/800'
-    images.value[0] = 'https://picsum.photos/id/77/800/800'
-  })
-})
+    currentImage.value = "https://picsum.photos/id/77/800/800";
+    images.value[0] = "https://picsum.photos/id/77/800/800";
+  });
+});
 
 const isInCart = computed(() => {
-  let res = false
+  let res = false;
   userStore.cart.forEach((prod) => {
     if (route.params.id === prod.id) {
-      res = true
+      res = true;
     }
-  })
-  return res
-})
+  });
+  return res;
+});
 
 const priceComputed = computed(() => {
-  return '26.40'
-})
+  return "26.40";
+});
 
 const images = ref([
-  '',
-  'https://picsum.photos/id/212/800/800',
-  'https://picsum.photos/id/233/800/800',
-  'https://picsum.photos/id/165/800/800',
-  'https://picsum.photos/id/99/800/800',
-  'https://picsum.photos/id/144/800/800',
-])
+  "",
+  "https://picsum.photos/id/212/800/800",
+  "https://picsum.photos/id/233/800/800",
+  "https://picsum.photos/id/165/800/800",
+  "https://picsum.photos/id/99/800/800",
+  "https://picsum.photos/id/144/800/800",
+]);
 
 const addToCart = () => {
-  alert('ADDED')
-}
+  alert("ADDED");
+};
 </script>
