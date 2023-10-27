@@ -15,6 +15,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "nuxt": "^3.7.4",
+    "prisma": "^5.5.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
@@ -23,12 +24,11 @@
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.2",
     "@pinia/nuxt": "^0.4.11",
-    "@prisma/client": "^5.4.1",
+    "@prisma/client": "^5.5.2",
     "@stripe/stripe-js": "^2.1.7",
     "nuxt-icon": "^0.5.0",
     "nuxt-lodash": "^2.5.0",
     "pinia": "^2.1.6",
-    "prisma": "^5.4.1",
     "stripe": "^13.9.0"
   }
 }
