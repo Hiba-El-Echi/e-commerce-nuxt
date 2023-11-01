@@ -5,7 +5,7 @@
         <div class="md:w-[65%]">
           <div class="bg-white rounded-lg p-4">
             <div class="text-xl font-semibold mb-2">Shipping Address</div>
-            <div v-if="false">
+            <div v-if="currentAddress && currentAddress.data">
               <NuxtLink
                 to="/address"
                 class="flex items-center pb-2 text-blue-500 hover:text-red-400"
@@ -19,23 +19,27 @@
                 <ul class="text-xs">
                   <li class="flex items-center gap-2">
                     <div>Contact name:</div>
-                    <div class="font-bold">Title</div>
+                    <div class="font-bold">{{ currentAddress.data.name }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Address:</div>
-                    <div class="font-bold">11 street</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.address }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Zip Code:</div>
-                    <div class="font-bold">2034</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.zipcode }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>City:</div>
-                    <div class="font-bold">test</div>
+                    <div class="font-bold">{{ currentAddress.data.city }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Country:</div>
-                    <div class="font-bold">test</div>
+                    <div class="font-bold">{{ currentAddress.data.city }}</div>
                   </li>
                 </ul>
               </div>
@@ -112,6 +116,7 @@
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
+const user = useSupabaseUser();
 const route = useRoute();
 let selectedArray = ref([]);
 
@@ -123,6 +128,27 @@ let total = ref(0);
 let clientSecret = null;
 let currentAddress = ref(null);
 let isProcessing = ref(false);
+
+onBeforeMount(async () => {
+  if (userStore.checkout.length < 1) {
+    return navigateTo("/shoppingcart");
+  }
+
+  total.value = 0.0;
+  if (user.value) {
+    currentAddress.value = await useFetch(
+      `/api/prisma/get-address-by-user/${user.value.id}`
+    );
+    setTimeout(() => (userStore.isLoading = false), 200);
+  }
+});
+
+watchEffect(() => {
+  if (route.fullPath == "/checkout" && !user.value) {
+    return navigateTo("/auth");
+  }
+});
+
 onMounted(() => {
   isProcessing.value = true;
   userStore.checkout.forEach((item) => {
@@ -140,35 +166,4 @@ watch(
 );
 
 const stripeInit = async () => {};
-
-const products = [
-  {
-    id: 1,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 2,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 3,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-  {
-    id: 4,
-    title: "Tile 1",
-    description: "descriptionnnn ",
-    url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    price: 99,
-  },
-];
 </script>

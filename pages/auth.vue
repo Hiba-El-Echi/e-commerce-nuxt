@@ -19,13 +19,13 @@
         <div>Google</div>
       </button>
 
-      <button
+      <!-- <button
         @click="login('github')"
         class="mt-4 flex items-center justify-center gap-3 p-1.5 w-full border hover:bg-gray-100 rounded-full text-lg font-semibold"
       >
         <img class="w-full max-w-[30px]" src="/github-logo.png" />
         <div>Github</div>
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
