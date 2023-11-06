@@ -118,7 +118,6 @@ import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
 const user = useSupabaseUser();
 const route = useRoute();
-let selectedArray = ref([]);
 
 let stripe = null;
 let elements = null;
@@ -128,6 +127,7 @@ let total = ref(0);
 let clientSecret = null;
 let currentAddress = ref(null);
 let isProcessing = ref(false);
+definePageMeta({ middleware: "auth" })
 
 onBeforeMount(async () => {
   if (userStore.checkout.length < 1) {
